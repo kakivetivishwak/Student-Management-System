@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Student Management System</h1>
+
+    <!-- Add Student Form -->
+    <div class="card">
+        <h2>Add Student</h2>
+
+        <form action="/add_student" method="POST">
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Student Name"
+                required
+            >
+
+            <input
+                type="text"
+                name="reg_no"
+                placeholder="Registration Number"
+                required
+            >
+
+            <input
+                type="text"
+                name="branch"
+                placeholder="Branch"
+                required
+            >
+
+            <button type="submit">
+                Add Student
+            </button>
+
+        </form>
+    </div>
+
+    <!-- Search Student Form -->
+    <div class="card">
+        <h2>Search Student</h2>
+
+        <form action="/search_student" method="POST">
+
+            <input
+                type="text"
+                name="search_reg_no"
+                placeholder="Enter Registration Number"
+                required
+            >
+
+            <button type="submit">
+                Search Student
+            </button>
+
+        </form>
+    </div>
+
+    {% if message %}
+    <div class="message">
+        {{ message }}
+    </div>
+    {% endif %}
+
+    {% if student %}
+    <div class="result">
+
+        <h2>Student Details</h2>
+
+        <table>
+            <tr>
+                <th>Name</th>
+                <td>{{ student.name }}</td>
+            </tr>
+
+            <tr>
+                <th>Registration No</th>
+                <td>{{ student.reg_no }}</td>
+            </tr>
+
+            <tr>
+                <th>Branch</th>
+                <td>{{ student.branch }}</td>
+            </tr>
+        </table>
+
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
